@@ -40,17 +40,6 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String,
-                showsDecimal: Bool, decimalPlaces: Int) {
-//        if showsDecimal {
-//            self.text = String(format: "%.\(decimalPlaces)f", value) +
-//                        "\(valueIndicator)"
-//        } else {
-//            self.text = "\(Int(value))\(valueIndicator)"
-//        }
-//        self.sizeToFit()
-        update(withValue: value, valueIndicator: valueIndicator, showsDecimal: showsDecimal, decimalPlaces: decimalPlaces, isIndicatorAtEnd: true)
-    }
     
     func update(withValue value: CGFloat, valueIndicator: String,
                 showsDecimal: Bool, decimalPlaces: Int, isIndicatorAtEnd:Bool) {
