@@ -42,11 +42,31 @@ private extension CGFloat {
 private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String,
                 showsDecimal: Bool, decimalPlaces: Int) {
+//        if showsDecimal {
+//            self.text = String(format: "%.\(decimalPlaces)f", value) +
+//                        "\(valueIndicator)"
+//        } else {
+//            self.text = "\(Int(value))\(valueIndicator)"
+//        }
+//        self.sizeToFit()
+        update(withValue: value, valueIndicator: valueIndicator, showsDecimal: showsDecimal, decimalPlaces: decimalPlaces, isIndicatorAtEnd: true)
+    }
+    
+    func update(withValue value: CGFloat, valueIndicator: String,
+                showsDecimal: Bool, decimalPlaces: Int, isIndicatorAtEnd:Bool) {
         if showsDecimal {
-            self.text = String(format: "%.\(decimalPlaces)f", value) +
-                        "\(valueIndicator)"
+            if isIndicatorAtEnd{
+                self.text = String(format: "%.\(decimalPlaces)f", value) +
+                "\(valueIndicator)"
+            }else{
+                self.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
+            }
         } else {
-            self.text = "\(Int(value))\(valueIndicator)"
+            if isIndicatorAtEnd{
+                self.text = "\(Int(value))\(valueIndicator)"
+            }else{
+                self.text = "\(valueIndicator)\(Int(value))"
+            }
         }
         self.sizeToFit()
     }
@@ -104,6 +124,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     var animationDuration: TimeInterval = 1.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
     var animated = false
+    var isIndicatorAtEnd:Bool = true
+    
     @NSManaged weak var valueDelegate: UICircularProgressRingView?
     
     // The value label which draws the text for the current value

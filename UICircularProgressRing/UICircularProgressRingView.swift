@@ -695,6 +695,12 @@ import UIKit
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
+    open var isIndicatorAtEnd:Bool = true{
+        didSet{
+            self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
+        }
+    }
+    
     // MARK: Layer
     
     /**
@@ -778,6 +784,8 @@ import UIKit
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
 
+        self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
+        
         self.backgroundColor = UIColor.clear
         self.ringLayer.backgroundColor = UIColor.clear.cgColor
     }
