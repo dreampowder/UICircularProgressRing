@@ -710,7 +710,9 @@ import UIKit
      Set the ring layer to the default layer, cated as custom layer
      */
     internal var ringLayer: UICircularProgressRingLayer {
-        return self.layer as! UICircularProgressRingLayer
+        let layer = self.layer as! UICircularProgressRingLayer
+        layer.isIndicatorAtEnd = self.isIndicatorAtEnd
+        return layer
     }
     
     /**
@@ -748,6 +750,7 @@ import UIKit
     internal func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
         self.ringLayer.valueDelegate = self
+        self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
         
         // Helps with pixelation and blurriness on retina devices
         self.layer.contentsScale = UIScreen.main.scale
@@ -787,7 +790,7 @@ import UIKit
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
 
-        self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
+        
         
         self.backgroundColor = UIColor.clear
         self.ringLayer.backgroundColor = UIColor.clear.cgColor
