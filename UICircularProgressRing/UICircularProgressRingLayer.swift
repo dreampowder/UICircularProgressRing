@@ -335,7 +335,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
         valueLabel.update(withValue: value,
                           valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint,
-                          decimalPlaces: decimalPlaces)
+                          decimalPlaces: decimalPlaces,
+                          isIndicatorAtEnd:isIndicatorAtEnd)
         
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
