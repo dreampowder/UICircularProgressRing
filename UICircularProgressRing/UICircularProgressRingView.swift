@@ -695,6 +695,9 @@ import UIKit
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
+    /**
+     Boolean value for setting indicator location at end or at the beginning
+     */
     open var isIndicatorAtEnd:Bool = true{
         didSet{
             self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
@@ -831,6 +834,7 @@ import UIKit
         // Remove the current animation, so that new can be processed
         if isAnimating { self.layer.removeAnimation(forKey: "value") }
         // Only animate if duration sent is greater than zero
+        self.ringLayer.isIndicatorAtEnd = self.isIndicatorAtEnd
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
         // Create a transaction to be notified when animation is complete
