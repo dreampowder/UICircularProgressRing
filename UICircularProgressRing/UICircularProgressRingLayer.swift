@@ -111,7 +111,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var decimalPlaces: Int
     
     var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animationStyle: String = CAMediaTimingFunctionName.easeInEaseOut.rawValue
     var animated = false
     var isIndicatorAtEnd:Bool = true
     
@@ -162,7 +162,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if event == "value" && self.animated {
             let animation = CABasicAnimation(keyPath: "value")
             animation.fromValue = self.presentation()?.value(forKey: "value")
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: animationStyle))
             animation.duration = animationDuration
             return animation
         }
@@ -314,7 +314,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     private func drawValueLabel() {
         guard shouldShowValueText else { return }
-        
+
         // Draws the text field
         // Some basic label properties are set
         valueLabel.font = self.font
@@ -326,10 +326,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
                           showsDecimal: showFloatingPoint,
                           decimalPlaces: decimalPlaces,
                           isIndicatorAtEnd:isIndicatorAtEnd)
-        
+
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        
+
         valueLabel.drawText(in: self.bounds)
     }
 }

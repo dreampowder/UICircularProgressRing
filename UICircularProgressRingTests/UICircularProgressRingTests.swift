@@ -155,5 +155,13 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.animationStyle = kCAMediaTimingFunctionLinear
         XCTAssertEqual(progressRing.animationStyle, kCAMediaTimingFunctionLinear)
         XCTAssertEqual(progressRing.ringLayer.animationStyle, kCAMediaTimingFunctionLinear)
+        
+        progressRing.isIndicatorAtEnd = false
+        XCTAssertEqual(progressRing.isIndicatorAtEnd, false)
+        XCTAssertEqual(progressRing.ringLayer.isIndicatorAtEnd, false)
+        
+        progressRing.isIndicatorAtEnd = true
+        XCTAssertEqual(progressRing.isIndicatorAtEnd, true)
+        XCTAssertEqual(progressRing.ringLayer.isIndicatorAtEnd, true)
     }
 }
